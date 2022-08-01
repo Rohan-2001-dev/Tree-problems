@@ -1,0 +1,38 @@
+struct node * arr[100],*a[100];
+int top=-1,top1=-1;
+void push(struct node *root){
+    arr[++top]=root;
+}
+void push1(struct node *root){
+    a[++top]=root;
+}
+struct node * pop1(){
+    return a[top--];
+}
+struct node * pop(){
+    return arr[top--];
+}
+void postOrder( struct node *root) {
+  struct node *temp;
+  do{
+      while(root!=NULL ){
+          if(root->right!=NULL)
+            push(root->right);
+          push(root);
+          root=root->left;
+          
+      }
+      root=pop();
+      
+      if(root->right==arr[top]){
+          temp=pop();
+          push(root);
+          root=temp;   
+      }
+   
+      else{
+            printf("%d ",root->data,top);
+            root=NULL;           
+      }
+   }while(top>=0);
+}
