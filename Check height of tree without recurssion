@@ -1,0 +1,29 @@
+struct node *que[100];
+int front=-1,rear=-1;
+void enqueue(struct node* node){
+    if(rear==-1)
+      rear++;
+    que[++front]=node;
+}
+struct node * dequeue(){
+    return que[rear++];
+}
+int getHeight(struct node* root) {
+   struct node* temp;
+   int nodecount=0,height=0;
+   enqueue(root);
+   while(1){
+       nodecount=(front-rear)+1;
+       if(nodecount==0)
+         return height-1;
+       height++;
+       while(nodecount>0){
+           temp=dequeue();
+           if(temp->left!=NULL)
+             enqueue(temp->left);
+           if(temp->right!=NULL)
+             enqueue(temp->right);
+           nodecount--;
+       } 
+   }
+}
