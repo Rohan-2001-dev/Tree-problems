@@ -1,0 +1,38 @@
+tree * q[500];
+int front=-1,rear=-1;
+void enqueue(tree *node){
+ //   printf("\nentered in enqueue\n");
+    if(front==-1)
+       front++;
+  //  printf("front is now %d \n ",front);
+    q[front++]=node;
+}
+tree *dequeue(){
+    rear++;
+    //printf("entered in the dequeue %d ",rear);
+    if(rear<front)
+      return q[rear];
+    return 0;
+}
+void levelOrder( tree *root) {
+   tree * temp=root;
+   int nodecount=1;
+  // printf("\nentered in the levelOrder %d nodecount \n",nodecount);
+   enqueue(temp);
+   while(1){
+  //     printf("nodecount is %d ",nodecount);
+       nodecount=front-rear-1;
+       if(nodecount==0)
+         return;
+       while(nodecount>0){
+           temp=dequeue();
+           printf(" %d ",temp->data);
+           if(temp->left!=NULL)
+              enqueue(temp->left);
+           if(temp->right!=NULL)
+              enqueue(temp->right);
+           nodecount--;
+       }
+       printf("\n");
+   }
+}
