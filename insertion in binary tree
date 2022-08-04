@@ -1,0 +1,32 @@
+struct node* insert( struct node* root, int data ) {
+	struct node * temp=root,*t1;
+    t1=malloc(sizeof(struct node *));
+    t1->data=data;
+    t1->left=NULL;
+    t1->right=NULL;
+    while(temp!=NULL){
+        if(temp->data>t1->data){
+            if(temp->left==NULL){
+                temp->left=t1;
+                break;
+            }
+            else {
+                temp=temp->left;
+            }
+        }
+        else if(temp->data<t1->data){
+            if(temp->right==NULL){
+                temp->right=t1;
+                break;
+            }
+            else{
+                temp=temp->right;
+            }
+        }
+    }	
+    if(root==NULL){
+        root=t1;
+    }
+    return root;
+	
+}
