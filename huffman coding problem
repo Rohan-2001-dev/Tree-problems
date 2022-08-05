@@ -1,0 +1,15 @@
+def decodeHuff(root, s):
+    temp=root
+    string=''
+    for i in s:
+                
+         if i=='0':
+            temp=temp.left
+         else :
+            temp=temp.right
+         if(temp.left ==None and temp.right==None):
+            string+=temp.data
+            temp=root     
+     
+    
+    print(string)
