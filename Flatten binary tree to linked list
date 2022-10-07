@@ -1,0 +1,28 @@
+void flatten(Node *root)
+    {
+        if(root!=NULL)
+    {
+        Node *temp;
+        if(root->left!=NULL && root->right==NULL){
+            root->right=root->left;
+            root->left=NULL;
+            flatten(root->right);
+        }
+        else if(root->left!=NULL && root->right!=NULL){
+            temp=root->left;
+            while(temp->right!=NULL){
+                temp=temp->right;
+            }
+            temp->right=root->right;
+            root->right=root->left;
+            root->left=NULL;
+            flatten(root->right);
+        }
+        else if(root->left==NULL && root->right!=NULL)
+        {
+            flatten(root->right);
+        }
+        
+    }
+    return;
+    }
